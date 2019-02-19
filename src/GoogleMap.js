@@ -5,10 +5,11 @@ import {GoogleApiWrapper, Map, Marker} from 'google-maps-react';
 class GoogleMap extends Component {
   render() {
     const style = {
+      position: 'relative',
       width: '100%',
       height: '100vh',
-      float: 'right',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      float: 'right'
     }
 
     let locationArray = [
@@ -33,7 +34,7 @@ class GoogleMap extends Component {
       <Map
         google={this.props.google}
         style={style}
-        zoom={16}
+        zoom={15}
         initialCenter={
           {lat: 40.815989, lng: -73.97997}
         }
