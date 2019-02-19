@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import GoogleMap from './GoogleMap.js'
+import Sidebar from './Sidebar.js'
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
         </header>
         <div class="container">
           <GoogleMap />
-          <nav id="sidebar">Testing</nav>
+          <Sidebar />
         </div>
       </div>
     );
