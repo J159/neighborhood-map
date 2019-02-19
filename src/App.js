@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GoogleMap from './GoogleMap.js'
 
 class App extends Component {
   render() {
@@ -10,8 +11,10 @@ class App extends Component {
           <h1>Edgewater, NJ</h1>
           <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
         </header>
-        <nav id="sidebar">Testing</nav>
-        // Map component will go here>
+        <div class="container">
+          <GoogleMap />
+          <nav id="sidebar">Testing</nav>
+        </div>
       </div>
     );
   }
