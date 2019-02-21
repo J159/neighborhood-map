@@ -36,7 +36,7 @@ class GoogleMap extends Component {
         style={style}
         zoom={15}
         initialCenter={
-          {lat: 40.815989, lng: -73.97997}
+          {lat: 40.815513, lng: -73.982988}
         }
         styles = {[{'featureType': 'water',
           'stylers': [
