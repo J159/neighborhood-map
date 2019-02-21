@@ -26,6 +26,7 @@ class GoogleMap extends Component {
   }
 
   render() {
+    console.log(this.props.locations);
     const style = {
       position: 'relative',
       width: '100%',
@@ -49,66 +50,21 @@ class GoogleMap extends Component {
           ]
         }]}
       >
+
+      {this.props.locations.map((location, key) =>
         <Marker
+          key={location.id}
+          id={location.id}
           onClick={this.onMarkerClick}
-          name='Mitsuwa Marketplace'
-          position={{lat: 40.8159891, lng: -73.97997}}
+          name={location.name}
+          position={{
+            lat: location.position.lat,
+            lng: location.position.lng
+          }}
           animation={this.props.google.maps.Animation.DROP}
         />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Kinokuniya'
-          position={{lat: 40.816703942419494, lng: -73.97981464862823}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Target'
-          position={{lat: 40.814061, lng: -73.981719}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='SoJo Spa Club'
-          position={{lat: 40.818949, lng: -73.979436}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Sushi Cruise'
-          position={{lat: 40.818186, lng: -73.97709}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Edgewater Multiplex Cinemas'
-          position={{lat: 40.807979, lng: -73.98806}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='McDonalds'
-          position={{lat: 40.813605, lng: -73.9838}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='T.J.Maxx'
-          position={{lat: 40.811844, lng: -73.984927}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Kuppi Coffee Company'
-          position={{lat: 40.818919, lng: -73.9768}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name='Pet Valu'
-          position={{lat: 40.820082, lng: -73.977218}}
-          animation={this.props.google.maps.Animation.DROP}
-        />
+      )}
+
         <InfoWindow
           marker={this.state.activeMarker}
           animation={this.props.google.maps.Animation.BOUNCE}
