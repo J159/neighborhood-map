@@ -54,6 +54,7 @@ class GoogleMap extends Component {
 
     return (
       <Map
+        onClick={this.onMapClicked}
         google={this.props.google}
         style={style}
         zoom={15}
@@ -67,6 +68,7 @@ class GoogleMap extends Component {
         }]}
       >
         <Marker
+          onClick={this.onMarkerClick}
           name='Mitsuwa Marketplace'
           position={{lat: 40.8159891, lng: -73.97997}}
         />
@@ -106,7 +108,13 @@ class GoogleMap extends Component {
           name='Pet Valu'
           position={{lat: 40.820082, lng: -73.977218}}
         />
-      <InfoWindow />
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>
 
       </Map>
     );
