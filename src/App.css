@@ -46,8 +46,9 @@
 input {
   font-size: 1.25em;
   width: 100%;
-  padding: 0;
+  padding: 9px 0;
   border: none;
+  text-indent: 10px;
 }
 
 ul {
@@ -56,6 +57,6 @@ ul {
 
 li {
   font-size: 1.25em;
-  padding: 5px;
+  padding: 5px 10px;
   list-style-type: none
 }
