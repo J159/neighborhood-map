@@ -73,38 +73,47 @@ class GoogleMap extends Component {
           position={{lat: 40.8159891, lng: -73.97997}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Kinokuniya'
           position={{lat: 40.816703942419494, lng: -73.97981464862823}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Target'
           position={{lat: 40.814061, lng: -73.981719}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='SoJo Spa Club'
           position={{lat: 40.818949, lng: -73.979436}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Sushi Cruise'
           position={{lat: 40.818186, lng: -73.97709}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Edgewater Multiplex Cinemas'
           position={{lat: 40.807979, lng: -73.98806}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='McDonalds'
           position={{lat: 40.813605, lng: -73.9838}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='T.J.Maxx'
           position={{lat: 40.811844, lng: -73.984927}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Kuppi Coffee Company'
           position={{lat: 40.818919, lng: -73.9768}}
         />
         <Marker
+          onClick={this.onMarkerClick}
           name='Pet Valu'
           position={{lat: 40.820082, lng: -73.977218}}
         />
