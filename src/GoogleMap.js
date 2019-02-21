@@ -3,6 +3,12 @@ import './App.css';
 import {GoogleApiWrapper, Map, Marker, InfoWindow} from 'google-maps-react';
 
 class GoogleMap extends Component {
+  state = {
+    showInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  }
+
   render() {
     const style = {
       position: 'relative',
@@ -84,6 +90,7 @@ class GoogleMap extends Component {
           name='Pet Valu'
           position={{lat: 40.820082, lng: -73.977218}}
         />
+      <InfoWindow />
 
       </Map>
     );
