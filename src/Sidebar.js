@@ -15,10 +15,9 @@ class Sidebar extends Component {
 
   updateSidebar = (query) => {
     let updateSidebarResultes = this.props.locations.filter(location =>
-      location.name.toLowerCase().includes(query.toLowerCase()));
+      location.name.toLowerCase().includes(query.toLowerCase())
+    );
     this.setState({ searchResults: updateSidebarResultes})
-    let sidebar = document.getElementById("results")
-    sidebar.innerHTML = <li><button>{this.state.searchResults}</button></li>
     console.log(this.state.searchResults)
   }
 
