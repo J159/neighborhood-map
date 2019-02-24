@@ -18,7 +18,27 @@ let locationsArray = [
   {name: 'Karaoke Bar', position: {lat: 40.825339, lng: -73.974858}}
 ]
 
+
 class App extends Component {
+  state = {
+    query: "",
+    searchResults: locationsArray
+  }
+
+  updateQuery = (query) => {
+    this.setState({ query }, () => {
+      this.updateSidebar(query)
+    })
+  }
+
+  updateSidebar = (query) => {
+    let updateSidebarResultes = locationsArray.filter(location =>
+      location.name.toLowerCase().includes(query.toLowerCase())
+    );
+    this.setState({ searchResults: updateSidebarResultes})
+    console.log(this.state.searchResults)
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,8 +47,11 @@ class App extends Component {
           <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
         </header>
         <div className="container">
-          <GoogleMap className="map" locations={locationsArray}/>
-          <Sidebar locations={locationsArray}/>
+          <GoogleMap className="map" locations={this.state.searchResults}/>
+          <Sidebar
+            locations={this.state.searchResults}
+            query={this.state.query}
+            updateQuery={this.updateQuery}/>
         </div>
       </div>
     );
