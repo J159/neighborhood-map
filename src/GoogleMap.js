@@ -26,20 +26,11 @@ class GoogleMap extends Component {
   }
 
   render() {
-    console.log(this.props.locations);
-    const style = {
-      position: 'relative',
-      width: '100%',
-      height: '100vh',
-      overflow: 'hidden',
-      float: 'right'
-    }
 
     return (
       <Map
         onClick={this.onMapClicked}
         google={this.props.google}
-        style={style}
         zoom={15}
         initialCenter={
           {lat: 40.815513, lng: -73.982988}
@@ -53,8 +44,7 @@ class GoogleMap extends Component {
 
       {this.props.locations.map((location, key) =>
         <Marker
-          key={location.id}
-          id={location.id}
+          key={location.name}
           onClick={this.onMarkerClick}
           name={location.name}
           position={{
