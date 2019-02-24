@@ -30,14 +30,13 @@ class Sidebar extends Component {
           value={this.state.query}
           onChange={(event) => this.updateQuery(event.target.value)}
         />
-      <ul id="results">
-        {this.props.locations.map((location, key) =>
-          <li key={location.name}>
-            <button>{location.name}</button>
-          </li>
-        )}
-      </ul>
-
+        <ul id="results">
+          {this.state.searchResults.map((location, key) =>
+            <li key={key}>
+              <button>{location.name}</button>
+            </li>
+          )}
+        </ul>
       </nav>
     );
   }
