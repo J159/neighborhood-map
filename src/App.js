@@ -3,7 +3,7 @@ import './App.css';
 import GoogleMap from './GoogleMap.js'
 import Sidebar from './Sidebar.js'
 
-const locationsArray = [
+let locationsArray = [
   {name: 'Mitsuwa Marketplace', position: {lat: 40.8159891, lng: -73.97997}},
   {name: 'Kinokuniya', position: {lat: 40.816703942419494, lng: -73.97981464862823}},
   {name: 'Target', position: {lat: 40.814061, lng: -73.981719}},
@@ -28,7 +28,7 @@ class App extends Component {
           <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
         </header>
         <div className="container">
-          <GoogleMap locations={locationsArray}/>
+          <GoogleMap className="map" locations={locationsArray}/>
           <Sidebar locations={locationsArray}/>
         </div>
       </div>
