@@ -11,10 +11,9 @@ let locationsArray = [
   {name: 'Sushi Cruise', position: {lat: 40.818186, lng: -73.97709}},
   {name: 'Edgewater Multiplex Cinemas', position: {lat: 40.807979, lng: -73.98806}},
   {name: 'McDonalds', position: {lat: 40.813605, lng: -73.9838}},
-  {name: 'T.J.Maxx', position: {lat: 40.811844, lng: -73.984927}},
+  {name: 'TJ Maxx', position: {lat: 40.811844, lng: -73.984927}},
   {name: 'Kuppi Coffee Company', position: {lat: 40.818919, lng: -73.9768}},
   {name: 'Pet Valu', position: {lat: 40.820082, lng: -73.977218}},
-  // might remove below
   {name: 'Genji Sushi, Gyoza, & Ramen Bar', position: {lat: 40.825034, lng: -73.97393}},
   {name: 'Karaoke Bar', position: {lat: 40.825339, lng: -73.974858}}
 ]
