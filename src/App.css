@@ -1,27 +1,21 @@
 /* Main Page */
 
 .App {
-  margin: 0;
-  width: 100%;
   text-align: center;
 }
 
 .title {
-  /* position: fixed;
-  z-index: 1; */
   width: 100%;
 }
 
 .title h1 {
   margin: auto;
-  /* width: 0 auto; */
   color: #fff;
   background-color: #000;
   padding: 10px;
 }
 
 .title p {
-  /* width: 0 auto; */
   margin: auto;
   padding: 10px;
   color: #fff;
@@ -29,7 +23,9 @@
 }
 
 .container {
-  width: 100%
+  /* width: 100%; */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #sidebar {
@@ -56,7 +52,51 @@ ul {
 }
 
 li {
+  width: 100%;
   font-size: 1.25em;
-  padding: 5px 10px;
-  list-style-type: none
+  padding: 5px 0px;
+  list-style-type: none;
+}
+
+.map {
+  margin: 0;
+  width: 85%;
+  height: 100vh;
+}
+
+button {
+  font-size: 1.1em;
+  width: 100%;
+  border: 0;
+  color: #fff;
+  background-color: #000;
+  padding: 6px 5px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background: #f05c84;
+}
+
+/* Mobile */
+@media screen and (max-width: 396px) {
+  .title h1 {
+    font-size: 1.5em;
+    padding-top: 0;
+  }
+  .title p {
+    padding: 4px;
+  }
+  ul {
+    margin: 0;
+  }
+  li {
+    padding: 0;
+  }
+  button {
+    font-size: 12px;
+    width: 100%;
+    padding: 1px 0;
+  }
 }
