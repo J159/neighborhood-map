@@ -4,7 +4,7 @@ import './App.css';
 class Sidebar extends Component {
   state = {
     query: "",
-    searchResults: []
+    searchResults: this.props.locations
   }
 
   updateQuery = (query) => {
