@@ -14,7 +14,9 @@ class Sidebar extends Component {
         <ul id="results">
           {this.props.locations.map((location, key) =>
             <li key={key}>
-              <button>{location.name}</button>
+              <button
+                onClick={this.props.onMarkerClick}
+                >{location.name}</button>
             </li>
           )}
         </ul>
