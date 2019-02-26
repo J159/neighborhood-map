@@ -66,6 +66,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    // for each location, fetch the wikipedia details and push it into newArray. Set newArray to the empty wikiResults array
     let newArray = []
     locationsArray.forEach( location => {
       let search = location.search
@@ -89,6 +90,7 @@ class App extends Component {
   }
 
   updateSidebar = (query) => {
+    // Updates the sidebar by filtering through locationsArray by name.
     let updateSidebarResultes = locationsArray.filter(location =>
       location.name.toLowerCase().includes(query.toLowerCase())
     );
@@ -97,6 +99,7 @@ class App extends Component {
   }
 
   onMarkerClick = (props, marker, e) =>
+    // When marker is clicked, display infowindow
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -104,6 +107,7 @@ class App extends Component {
     })
 
   onMapClicked = (props) => {
+    // When empty space on map clicked, close all markers
     if (this.state.showInfoWindow) {
       this.setState({
         showInfoWindow: false,
