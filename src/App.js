@@ -96,6 +96,22 @@ class App extends Component {
     console.log(this.state.searchResults)
   }
 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showInfoWindow: true
+    })
+
+  onMapClicked = (props) => {
+    if (this.state.showInfoWindow) {
+      this.setState({
+        showInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
