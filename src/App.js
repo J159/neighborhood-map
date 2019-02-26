@@ -132,7 +132,13 @@ class App extends Component {
           <Sidebar
             locations={this.state.searchResults}
             query={this.state.query}
-            updateQuery={this.updateQuery}/>
+            updateQuery={this.updateQuery}
+            showInfoWindow={this.state.showInfoWindow}
+            activeMarker={this.state.activeMarker}
+            selectedPlace={this.state.selectedPlace}
+            onMarkerClick={this.onMarkerClick}
+            onMapClicked={this.onMapClicked}
+            />
         </div>
       </div>
     );
