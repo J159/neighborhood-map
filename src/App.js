@@ -4,18 +4,54 @@ import GoogleMap from './GoogleMap.js'
 import Sidebar from './Sidebar.js'
 
 let locationsArray = [
-  {name: 'Mitsuwa Marketplace', position: {lat: 40.8159891, lng: -73.97997}},
-  {name: 'Kinokuniya', position: {lat: 40.816703942419494, lng: -73.97981464862823}},
-  {name: 'Target', position: {lat: 40.814061, lng: -73.981719}},
-  {name: 'SoJo Spa Club', position: {lat: 40.818949, lng: -73.979436}},
-  {name: 'Sushi Cruise', position: {lat: 40.818186, lng: -73.97709}},
-  {name: 'Edgewater Multiplex Cinemas', position: {lat: 40.807979, lng: -73.98806}},
-  {name: 'McDonalds', position: {lat: 40.813605, lng: -73.9838}},
-  {name: 'TJ Maxx', position: {lat: 40.811844, lng: -73.984927}},
-  {name: 'Kuppi Coffee Company', position: {lat: 40.818919, lng: -73.9768}},
-  {name: 'Pet Valu', position: {lat: 40.820082, lng: -73.977218}},
-  {name: 'Genji Sushi, Gyoza, & Ramen Bar', position: {lat: 40.825034, lng: -73.97393}},
-  {name: 'Karaoke Bar', position: {lat: 40.825339, lng: -73.974858}}
+  {name: 'Mitsuwa Marketplace',
+   position: {lat: 40.8159891, lng: -73.97997},
+   search: 'Mitsuwa Marketplace'
+  },
+  {name: 'Kinokuniya',
+   position: {lat: 40.816703942419494, lng: -73.97981464862823},
+   search: 'Books Kinokuniya'
+  },
+  {name: 'Target',
+   position: {lat: 40.814061, lng: -73.981719},
+   search: 'Target Corporation'
+ },
+  {name: 'SoJo Spa Club',
+   position: {lat: 40.818949, lng: -73.979436},
+   search: 'spa'
+ },
+  {name: 'Sushi Cruise',
+   position: {lat: 40.818186, lng: -73.97709},
+   search: 'sushi'
+ },
+  {name: 'Edgewater Multiplex Cinemas',
+   position: {lat: 40.807979, lng: -73.98806},
+   search: 'Movie theater'
+ },
+  {name: 'McDonalds',
+   position: {lat: 40.813605, lng: -73.9838},
+   search: 'McDonalds'
+ },
+  {name: 'TJ Maxx',
+   position: {lat: 40.811844, lng: -73.984927},
+   search: 'TJ Maxx'
+ },
+  {name: 'Trader Joes',
+   position: {lat: 40.821797, lng: -73.976758},
+   search: 'Trader Joes'
+ },
+  {name: 'Pet Valu',
+   position: {lat: 40.820082, lng: -73.977218},
+   search: 'Pet Store'
+ },
+  {name: 'Whole Foods Market',
+   position: {lat: 40.825034, lng: -73.97393},
+   search: 'Whole Foods Market'
+ },
+  {name: 'Karaoke Bar',
+   position: {lat: 40.825339, lng: -73.974858},
+   search: 'Karaoke box'
+ }
 ]
 
 
@@ -23,31 +59,27 @@ class App extends Component {
   state = {
     query: "",
     searchResults: locationsArray,
-    data: [],
-    filterFourSquare: []
+    wikiResults: [],
+    showInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
   }
 
   componentDidMount = () => {
-    fetch('https://api.foursquare.com/v2/venues/search?client_id=5D2JD0EWZWULW0EUSWBBE0Y5VM3BJZZL2AWWDPRT1HEKI2X0&client_secret=5MN5GQBRKT5NENQCPX3AIYPWV53AEY0BYV3TC224CBFUAWME&v=20180323&ll=40.8159891,-73.97997')
-    .then(response => response.json())
-    .then(json => {
-      const data = json.response.venues;
-      this.setState({ data });
-      console.log(data);
-     })
-    .then(this.filterVenueData(this.state.data))
-    .catch(error =>
-      // Code for handling errors
-      console.log('Mayday! Mayday! Fetch failed!')
-    );
-  }
-
-  filterVenueData = (data) => {
-    const newArray = data.filter(venue =>
-      venue.name.toLowerCase().includes(this.state.searchResults.name.toLowerCase())
-    );
-    this.setState({ filterFourSquare : newArray })
-    console.log(this.state.filterFourSquare)
+    let newArray = []
+    locationsArray.forEach( location => {
+      let search = location.search
+      let url = `https://en.wikipedia.org/api/rest_v1/page/summary/${search}`
+      fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        newArray.push(json)
+      })
+      .then( this.setState({ wikiResults : newArray}) )
+      .catch(error =>
+        console.log('Drats, no wiki results!')
+      )
+    })
   }
 
   updateQuery = (query) => {
@@ -74,7 +106,12 @@ class App extends Component {
         <div className="container">
           <GoogleMap className="map"
             locations={this.state.searchResults}
-            data={this.state.data}
+            wikiResults={this.state.wikiResults}
+            showInfoWindow={this.state.showInfoWindow}
+            activeMarker={this.state.activeMarker}
+            selectedPlace={this.state.selectedPlace}
+            onMarkerClick={this.onMarkerClick}
+            onMapClicked={this.onMapClicked}
             />
           <Sidebar
             locations={this.state.searchResults}
