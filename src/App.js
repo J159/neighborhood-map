@@ -22,7 +22,23 @@ let locationsArray = [
 class App extends Component {
   state = {
     query: "",
-    searchResults: locationsArray
+    searchResults: locationsArray,
+    data: null
+  }
+
+  componentDidMount = () => {
+    fetch('https://api.foursquare.com/v2/venues/search?client_id=5D2JD0EWZWULW0EUSWBBE0Y5VM3BJZZL2AWWDPRT1HEKI2X0&client_secret=5MN5GQBRKT5NENQCPX3AIYPWV53AEY0BYV3TC224CBFUAWME&v=20180323&ll=40.8159891,-73.97997')
+    .then(response => response.json())
+    .then(data => this.setState({ data }))
+    .catch(error =>
+      // Code for handling errors
+      console.log('Mayday! Mayday! Fetch failed!')
+    );
+  }
+
+  filterVenueData = (data) => {
+    if (searchResults.name)
+
   }
 
   updateQuery = (query) => {
