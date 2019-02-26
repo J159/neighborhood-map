@@ -23,13 +23,19 @@ class App extends Component {
   state = {
     query: "",
     searchResults: locationsArray,
-    data: null
+    data: [],
+    filterFourSquare: []
   }
 
   componentDidMount = () => {
     fetch('https://api.foursquare.com/v2/venues/search?client_id=5D2JD0EWZWULW0EUSWBBE0Y5VM3BJZZL2AWWDPRT1HEKI2X0&client_secret=5MN5GQBRKT5NENQCPX3AIYPWV53AEY0BYV3TC224CBFUAWME&v=20180323&ll=40.8159891,-73.97997')
     .then(response => response.json())
-    .then(data => this.setState({ data }))
+    .then(json => {
+      const data = json.response.venues;
+      this.setState({ data });
+      console.log(data);
+     })
+    .then(this.filterVenueData(this.state.data))
     .catch(error =>
       // Code for handling errors
       console.log('Mayday! Mayday! Fetch failed!')
@@ -37,8 +43,11 @@ class App extends Component {
   }
 
   filterVenueData = (data) => {
-    if (searchResults.name)
-
+    const newArray = data.filter(venue =>
+      venue.name.toLowerCase().includes(this.state.searchResults.name.toLowerCase())
+    );
+    this.setState({ filterFourSquare : newArray })
+    console.log(this.state.filterFourSquare)
   }
 
   updateQuery = (query) => {
@@ -63,7 +72,10 @@ class App extends Component {
           <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
         </header>
         <div className="container">
-          <GoogleMap className="map" locations={this.state.searchResults}/>
+          <GoogleMap className="map"
+            locations={this.state.searchResults}
+            data={this.state.data}
+            />
           <Sidebar
             locations={this.state.searchResults}
             query={this.state.query}
