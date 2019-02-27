@@ -51,6 +51,7 @@ class GoogleMap extends Component {
           {selectedPlaceObj && <div>
             <h3>{selectedPlaceObj.name}</h3>
             <p>{selectedPlaceObj.wikiResult.extract}</p>
+            <a href={selectedPlaceObj.wikiResult.content_urls.desktop.page} target="_blank">{selectedPlaceObj.wikiResult.content_urls.desktop.page}</a>
           </div>}
 </InfoWindow>
 
