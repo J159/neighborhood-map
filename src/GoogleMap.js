@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {GoogleApiWrapper, Map, Marker, InfoWindow} from 'google-maps-react';
+import NoGoogleMap from './NoGoogleMap';
 
 class GoogleMap extends Component {
   state = {
@@ -14,11 +15,18 @@ class GoogleMap extends Component {
   render() {
     const selectedPlaceObj = this.props.locations.find(location => location.name === this.props.selectedPlace)
 
+    const style = {
+        width: '100%',
+        height: '100vh'
+    }
+
     return (
       <Map
+        className="map"
         onReady={this.mapReady}
         role="application"
         aria-label="map"
+        style={style}
         onClick={this.props.onMapClicked}
         google={this.props.google}
         zoom={15}
@@ -44,16 +52,17 @@ class GoogleMap extends Component {
         />
       )}
 
-      <InfoWindow
+        <InfoWindow
+          className='info'
           marker={this.props.activeMarker}
           animation={this.props.google.maps.Animation.BOUNCE}
           visible={this.props.showInfoWindow}>
           {selectedPlaceObj && <div>
             <h3>{selectedPlaceObj.name}</h3>
             <p>{selectedPlaceObj.wikiResult.extract}</p>
-            <a href={selectedPlaceObj.wikiResult.content_urls.desktop.page} target="_blank">{selectedPlaceObj.wikiResult.content_urls.desktop.page}</a>
+            <a href={selectedPlaceObj.wikiResult.content_urls.desktop.page} target="_blank" rel="noopener noreferrer">{selectedPlaceObj.wikiResult.content_urls.desktop.page}</a>
           </div>}
-</InfoWindow>
+        </InfoWindow>
 
 
 
@@ -63,5 +72,5 @@ class GoogleMap extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCyWz-7NRnDzdE0kkFMlZ3HGNa7avBIOec"
+  apiKey: "AIzaSyCyWz-7NRnDzdE0kkFMlZ3HGNa7avBIOec", LoadingContainer: NoGoogleMap
 })(GoogleMap)
