@@ -74,7 +74,7 @@ class App extends Component {
     })
     Promise.all(promises)
       .then(searchResults => this.setState({ searchResults }))
-      .catch(err => { alert('Drats, retrieving Wikipedia data failed!') })
+      .catch(err => { alert('My apologies, Wikipedia data retrival unsuccessful') })
   }
 
   updateQuery = (query) => {
