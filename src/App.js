@@ -78,17 +78,7 @@ class App extends Component {
   }
 
   updateQuery = (query) => {
-    this.setState({ query }, () => {
-      this.updateSidebar(query)
-    })
-  }
-
-  updateSidebar = (query) => {
-    // Updates the sidebar by filtering through locationsArray by name.
-    let updateSidebarResultes = locationsArray.filter(location =>
-      location.name.toLowerCase().includes(query.toLowerCase())
-    );
-    this.setState({ searchResults: updateSidebarResultes})
+    this.setState({ query })
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -103,11 +93,20 @@ class App extends Component {
     // When empty space on map clicked, close all markers
       this.setState({
         showInfoWindow: false,
-        activeMarker: null
+        activeMarker: null,
+        selectedPlace: null
       })
     }
 
+  closeInfoWindow = () => {
+    this.setState({ showInfoWindow: false })
+}
+
   render() {
+    const filteredLocations = this.state.query === '' ?
+      this.state.searchResults :
+      this.state.searchResults.filter(location => location.name.toLowerCase().includes(this.state.query.toLowerCase()))
+
     return (
       <div className="App">
         <header className="title">
@@ -117,6 +116,7 @@ class App extends Component {
         <div className="container">
           <GoogleMap
             className="map"
+            filteredLocations={filteredLocations}
             locations={this.state.searchResults}
             showInfoWindow={this.state.showInfoWindow}
             activeMarker={this.state.activeMarker}
@@ -125,6 +125,7 @@ class App extends Component {
             onMapClicked={this.onMapClicked}
           />
           <Sidebar
+            filteredLocations={filteredLocations}
             locations={this.state.searchResults}
             query={this.state.query}
             updateQuery={this.updateQuery}
@@ -133,6 +134,7 @@ class App extends Component {
             selectedPlace={this.state.selectedPlace}
             onMarkerClick={this.onMarkerClick}
             onMapClicked={this.onMapClicked}
+            closeInfoWindow={this.closeInfoWindow}
           />
       </div>
       </div>
