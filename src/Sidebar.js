@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 class Sidebar extends Component {
+
   render() {
+    const selectedPlaceObj = this.props.locations.find(location => location.name === this.props.selectedPlace)
+
     return (
       <nav id="sidebar">
         <input
@@ -15,8 +18,11 @@ class Sidebar extends Component {
           {this.props.locations.map((location, key) =>
             <li key={key}>
               <button
-                onClick={this.props.onMarkerClick}
-                >{location.name}</button>
+                key={key}
+                onClick={e => this
+                .props
+                .onMarkerClick(key)}>
+                {location.name}</button>
             </li>
           )}
         </ul>
