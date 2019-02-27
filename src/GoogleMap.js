@@ -53,15 +53,19 @@ class GoogleMap extends Component {
       )}
 
         <InfoWindow
-          className='info'
+          className="info"
           marker={this.props.activeMarker}
-          animation={this.props.google.maps.Animation.BOUNCE}
-          visible={this.props.showInfoWindow}>
-          {selectedPlaceObj && <div>
-            <h3>{selectedPlaceObj.name}</h3>
-            <p>{selectedPlaceObj.wikiResult.extract}</p>
-            <a href={selectedPlaceObj.wikiResult.content_urls.desktop.page} target="_blank" rel="noopener noreferrer">{selectedPlaceObj.wikiResult.content_urls.desktop.page}</a>
-          </div>}
+          visible={this.props.showInfoWindow}
+          animation={this.props.google.maps.Animation.BOUNCE}>
+          <React.Fragment>
+            {selectedPlaceObj &&
+              <div>
+              <h3>{selectedPlaceObj.name}</h3>
+              <p>{selectedPlaceObj.wikiResult.extract}</p>
+              <a href={selectedPlaceObj.wikiResult.content_urls.desktop.page} target="_blank" rel="noopener noreferrer">{selectedPlaceObj.wikiResult.content_urls.desktop.page}</a>
+              </div>
+            }
+          </React.Fragment>
         </InfoWindow>
 
 
