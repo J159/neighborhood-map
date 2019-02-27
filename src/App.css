@@ -37,6 +37,8 @@
   position: relative;
   bottom: 0;
   z-index: 1;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 input {
@@ -49,6 +51,7 @@ input {
 
 ul {
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -69,6 +72,12 @@ li {
 
 .info {
   max-width: 100px;
+}
+
+.sidebarInfo {
+  font-size: 0.8em;
+  font-style: italic;
+  padding: 10px;
 }
 
 button {
