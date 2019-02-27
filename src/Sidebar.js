@@ -11,6 +11,7 @@ class Sidebar extends Component {
         <input
           type="text"
           placeholder="Search"
+          name="search"
           value={this.query}
           onChange={(event) => this.props.updateQuery(event.target.value)}
         />
@@ -21,7 +22,7 @@ class Sidebar extends Component {
                 key={key}
                 onClick={e => this
                 .props
-                .onMarkerClick(key)}>
+                .onMarkerClick(selectedPlaceObj)}>
                 {location.name}</button>
             </li>
           )}
