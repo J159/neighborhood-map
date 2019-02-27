@@ -107,11 +107,6 @@ class App extends Component {
       })
     }
 
-  // still testing this out
-  sidebarClick = (key) => {
-    this.setState({ selectedPlace: key })
-  }
-
   render() {
     return (
       <div className="App">
@@ -120,7 +115,8 @@ class App extends Component {
           <p>Places to visit after (hopefully) passing Nanodegree</p>
         </header>
         <div className="container">
-          <GoogleMap className="map"
+          <GoogleMap
+            className="map"
             locations={this.state.searchResults}
             showInfoWindow={this.state.showInfoWindow}
             activeMarker={this.state.activeMarker}
@@ -137,7 +133,6 @@ class App extends Component {
             selectedPlace={this.state.selectedPlace}
             onMarkerClick={this.onMarkerClick}
             onMapClicked={this.onMapClicked}
-            sidebarClick={this.sidebarClick}
           />
       </div>
       </div>
