@@ -40,7 +40,7 @@ class GoogleMap extends Component {
         }]}
       >
 
-      {this.props.locations.map((location, key) =>
+      {this.props.filteredLocations.map((location, key) =>
         <Marker
           key={key}
           onClick={this.props.onMarkerClick}
@@ -67,9 +67,6 @@ class GoogleMap extends Component {
             }
           </React.Fragment>
         </InfoWindow>
-
-
-
       </Map>
     );
   }
