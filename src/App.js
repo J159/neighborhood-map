@@ -99,15 +99,13 @@ class App extends Component {
       showInfoWindow: true
     })
 
-  onMapClicked = (props) => {
+  onMapClicked = () => {
     // When empty space on map clicked, close all markers
-    if (this.state.showInfoWindow) {
       this.setState({
         showInfoWindow: false,
         activeMarker: null
       })
     }
-  }
 
   // still testing this out
   sidebarClick = (key) => {
@@ -121,7 +119,6 @@ class App extends Component {
           <h1>Edgewater, NJ</h1>
           <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
         </header>
-        <div className="container">
           <GoogleMap className="map"
             locations={this.state.searchResults}
             showInfoWindow={this.state.showInfoWindow}
@@ -141,7 +138,6 @@ class App extends Component {
             onMapClicked={this.onMapClicked}
             sidebarClick={this.sidebarClick}
             />
-        </div>
       </div>
     );
   }
