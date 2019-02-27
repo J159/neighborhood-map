@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import './App.css';
 
 class Sidebar extends Component {
+  state = {
+    activePlace: null,
+    extract: null,
+    contentURL: null
+  }
+
+  onSidebarClick = place => {
+    this.setState({
+      activePlace: place.name,
+      extract: place.wikiResult.extract,
+      contentURL: place.wikiResult.content_urls.desktop.page
+    })
+  }
 
   render() {
-    const selectedPlaceObj = this.props.locations.find(location => location.name === this.props.selectedPlace)
-
     return (
       <nav id="sidebar">
         <input
@@ -17,15 +28,19 @@ class Sidebar extends Component {
           onChange={(event) => this.props.updateQuery(event.target.value)}
         />
         <ul id="results">
-          {this.props.locations.map((location, key) =>
+          {this.props.locations.map((location, key) => {
+            return (
             <li key={key}>
               <button
                 key={key}
-                onClick={e => this.props
-                .onMarkerClick(selectedPlaceObj)}>
-                {location.name}</button>
-            </li>
-          )}
+                onClick={e => this.onSidebarClick(location)}>
+                {location.name}
+              </button>
+              {this.state.activePlace === location.name && <div className="sidebarInfo">{this.state.extract}
+              <br></br>
+              <a href={this.state.contentURL} target="_blank" rel="noopener noreferrer">Wiki</a></div>}
+            </li>)
+          })}
         </ul>
       </nav>
     );
