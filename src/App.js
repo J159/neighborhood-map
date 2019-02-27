@@ -117,8 +117,9 @@ class App extends Component {
       <div className="App">
         <header className="title">
           <h1>Edgewater, NJ</h1>
-          <p>Places I would like to visit after (hopefully) passing Nanodegree</p>
+          <p>Places to visit after (hopefully) passing Nanodegree</p>
         </header>
+        <div className="container">
           <GoogleMap className="map"
             locations={this.state.searchResults}
             showInfoWindow={this.state.showInfoWindow}
@@ -126,7 +127,7 @@ class App extends Component {
             selectedPlace={this.state.selectedPlace}
             onMarkerClick={this.onMarkerClick}
             onMapClicked={this.onMapClicked}
-            />
+          />
           <Sidebar
             locations={this.state.searchResults}
             query={this.state.query}
@@ -137,7 +138,8 @@ class App extends Component {
             onMarkerClick={this.onMarkerClick}
             onMapClicked={this.onMapClicked}
             sidebarClick={this.sidebarClick}
-            />
+          />
+      </div>
       </div>
     );
   }
