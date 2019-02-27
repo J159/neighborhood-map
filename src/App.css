@@ -95,6 +95,15 @@ button:focus {
     background: #f05c84;
 }
 
+a {
+  color: #f05c84;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #f05c84;
+}
+
 /* Mobile */
 @media screen and (max-width: 396px) {
   .title h1 {
