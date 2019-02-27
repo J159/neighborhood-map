@@ -66,21 +66,16 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    // for each location, fetch the wikipedia details and push it into newArray. Set newArray to the empty wikiResults array
-    let newArray = []
-    locationsArray.forEach( location => {
-      let search = location.search
-      let url = `https://en.wikipedia.org/api/rest_v1/page/summary/${search}`
-      fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        newArray.push(json)
-      })
-      .then( this.setState({ wikiResults : newArray}) )
-      .catch(error =>
-        console.log('Drats, no wiki results!')
-      )
+    let promises = locationsArray.map(location => {
+      let url = `https://en.wikipedia.org/api/rest_v1/page/summary/${location.search}`
+      return fetch(url)
+        .then(response => response.json())
+        // this will add the wikiResult to the location object
+        .then(wikiResult => ({ ...location, wikiResult }))
     })
+    Promise.all(promises)
+      .then(searchResults => this.setState({ searchResults }))
+      .catch(err => { console.log('Drats, no wiki results!') })
   }
 
   updateQuery = (query) => {
@@ -101,7 +96,7 @@ class App extends Component {
   onMarkerClick = (props, marker, e) =>
     // When marker is clicked, display infowindow
     this.setState({
-      selectedPlace: props,
+      selectedPlace: props.name,
       activeMarker: marker,
       showInfoWindow: true
     })
@@ -114,6 +109,11 @@ class App extends Component {
         activeMarker: null
       })
     }
+  }
+
+  // still testing this out
+  sidebarClick = (key) => {
+    this.setState({ selectedPlace: key })
   }
 
   render() {
@@ -142,6 +142,7 @@ class App extends Component {
             selectedPlace={this.state.selectedPlace}
             onMarkerClick={this.onMarkerClick}
             onMapClicked={this.onMapClicked}
+            sidebarClick={this.sidebarClick}
             />
         </div>
       </div>
