@@ -12,6 +12,7 @@ class Sidebar extends Component {
           type="text"
           placeholder="Search"
           name="search"
+          autoComplete="off"
           value={this.query}
           onChange={(event) => this.props.updateQuery(event.target.value)}
         />
@@ -20,8 +21,7 @@ class Sidebar extends Component {
             <li key={key}>
               <button
                 key={key}
-                onClick={e => this
-                .props
+                onClick={e => this.props
                 .onMarkerClick(selectedPlaceObj)}>
                 {location.name}</button>
             </li>
