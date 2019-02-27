@@ -59,7 +59,6 @@ class App extends Component {
   state = {
     query: "",
     searchResults: locationsArray,
-    wikiResults: [],
     showInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
@@ -75,7 +74,7 @@ class App extends Component {
     })
     Promise.all(promises)
       .then(searchResults => this.setState({ searchResults }))
-      .catch(err => { console.log('Drats, no wiki results!') })
+      .catch(err => { alert('Drats, retrieving Wikipedia data failed!') })
   }
 
   updateQuery = (query) => {
@@ -90,7 +89,6 @@ class App extends Component {
       location.name.toLowerCase().includes(query.toLowerCase())
     );
     this.setState({ searchResults: updateSidebarResultes})
-    console.log(this.state.searchResults)
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -126,7 +124,6 @@ class App extends Component {
         <div className="container">
           <GoogleMap className="map"
             locations={this.state.searchResults}
-            wikiResults={this.state.wikiResults}
             showInfoWindow={this.state.showInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedPlace={this.state.selectedPlace}
