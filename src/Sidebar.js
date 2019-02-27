@@ -14,6 +14,7 @@ class Sidebar extends Component {
       extract: place.wikiResult.extract,
       contentURL: place.wikiResult.content_urls.desktop.page
     })
+    this.props.closeInfoWindow();
   }
 
   render() {
@@ -28,7 +29,7 @@ class Sidebar extends Component {
           onChange={(event) => this.props.updateQuery(event.target.value)}
         />
         <ul id="results">
-          {this.props.locations.map((location, key) => {
+          {this.props.filteredLocations.map((location, key) => {
             return (
             <li key={key}>
               <button
