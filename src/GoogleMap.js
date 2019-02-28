@@ -22,7 +22,6 @@ class GoogleMap extends Component {
 
     return (
       <Map
-        className="map"
         onReady={this.mapReady}
         role="application"
         aria-label="map"
@@ -49,6 +48,7 @@ class GoogleMap extends Component {
             lat: location.position.lat,
             lng: location.position.lng
           }}
+          animation={this.props.selectedPlace === location.name ? this.props.google.maps.Animation.BOUNCE : '0' }
         />
       )}
 
@@ -56,7 +56,7 @@ class GoogleMap extends Component {
           className="info"
           marker={this.props.activeMarker}
           visible={this.props.showInfoWindow}
-          animation={this.props.google.maps.Animation.BOUNCE}>
+          >
           <React.Fragment>
             {selectedPlaceObj &&
               <div>
