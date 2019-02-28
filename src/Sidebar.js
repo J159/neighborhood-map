@@ -9,6 +9,9 @@ class Sidebar extends Component {
   }
 
   onSidebarClick = place => {
+  if (place.name === this.state.activePlace) {
+    this.setState({ activePlace: null })
+  } else {
     this.setState({
       activePlace: place.name,
       extract: place.wikiResult.extract,
@@ -16,6 +19,7 @@ class Sidebar extends Component {
     })
     this.props.closeInfoWindow();
   }
+}
 
   render() {
     return (

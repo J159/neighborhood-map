@@ -115,7 +115,6 @@ class App extends Component {
         </header>
         <div className="container">
           <GoogleMap
-            className="map"
             filteredLocations={filteredLocations}
             locations={this.state.searchResults}
             showInfoWindow={this.state.showInfoWindow}
