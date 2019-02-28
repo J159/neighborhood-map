@@ -66,8 +66,6 @@ li {
   width: 70%;
   height: 100vh;
   object-fit: cover;
-  tabIndex: -1;
-  placeholder: NoTabIndex;
 }
 
 .info {
